@@ -1,10 +1,16 @@
 ﻿string[] GivenArray = new string[] { "123", "23", "hello", "world", "res", "checklength", "=)" };
 
-
-int GetNumber(string text)
+void FillNewArray(string[] oldArray, string[] newArray, int lengthLimit)
 {
-    System.Console.WriteLine(text);
-    return Convert.ToInt32(Console.ReadLine());
+    int temp = 0;
+    for (int i = 0; i < oldArray.Length; i++)
+    {
+        if (oldArray[i].Length <= lengthLimit)
+        {
+            newArray[temp] = oldArray[i];
+            temp++;
+        }
+    }
 }
 
 int ElementsQuantity(string[] array, int lengthLimit)
@@ -17,5 +23,22 @@ int ElementsQuantity(string[] array, int lengthLimit)
     return result;
 }
 
+void PrintArray(string[] array)
+{
+    System.Console.WriteLine("[" + string.Join(", ", array) + "]");
+}
+
+
+int GetNumber(string text)
+{
+    System.Console.WriteLine(text);
+    return Convert.ToInt32(Console.ReadLine());
+}
+
 int lengthLimit = GetNumber("Введите длину-ограничитель элемента массива");
 int ShortArrayLength = ElementsQuantity(GivenArray, lengthLimit);
+
+string[] newShortArray = new string[ShortArrayLength];
+
+FillNewArray(GivenArray, newShortArray, lengthLimit);
+PrintArray(newShortArray);
